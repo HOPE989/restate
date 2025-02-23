@@ -1,10 +1,10 @@
+import { useEffect } from "react";
 import { Stack } from "expo-router";
-
-import "./global.css"
-import {useFonts} from "expo-font";
-import {useEffect} from "react";
+import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 
+import "./global.css";
+import GlobalProvider from "@/lib/global-provider";
 
 export default function RootLayout() {
   const [fontsLoaded] = useFonts({
@@ -26,5 +26,9 @@ export default function RootLayout() {
     return null;
   }
 
-  return <Stack />;
+  return (
+    <GlobalProvider>
+      <Stack screenOptions={{ headerShown: false }} />
+    </GlobalProvider>
+  );
 }
